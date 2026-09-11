@@ -14,4 +14,11 @@
   @keyframes bsDrift2 { 0%,100% { transform: translate3d(0,0,0) scale(1.1) } 50% { transform: translate3d(-7vw,-5vh,0) scale(1) } }
   @keyframes bsDrift3 { 0%,100% { transform: translate3d(0,0,0) scale(1) } 50% { transform: translate3d(4vw,-6vh,0) scale(1.2) } }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+  /* The layout switcher. The design computed these per render; as state they
+     are just `aria-selected`, which the control needed anyway. */
+  .bs-tab { position: relative; z-index: 1; flex: 1 1 0; min-width: max-content; padding: 9px 22px; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: 13.5px; line-height: 1.4; white-space: nowrap; color: rgba(226,244,251,.58); transition: color .35s cubic-bezier(.32,.72,0,1); }
+  .bs-tab[aria-selected="true"] { color: #E2F4FB; }
+  .bs-thumb { position: absolute; top: 4px; bottom: 4px; left: 4px; width: 0; opacity: 0; border-radius: 999px; pointer-events: none; background: linear-gradient(180deg, rgba(226,244,251,.16), rgba(226,244,251,.05)); box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 -1px 0 rgba(255,255,255,.12) inset, 0 6px 18px rgba(0,0,0,.45); backdrop-filter: url(#lgSoft) blur(6px) saturate(180%) brightness(1.15); -webkit-backdrop-filter: blur(6px) saturate(180%) brightness(1.15); transition: left .58s cubic-bezier(.34,1.42,.5,1), width .58s cubic-bezier(.34,1.42,.5,1), transform .42s cubic-bezier(.34,1.56,.64,1); }
+  .bs-navpill { position: absolute; top: 50%; height: 34px; margin-top: -17px; left: 0; width: 0; opacity: 0; border-radius: 999px; pointer-events: none; background: linear-gradient(180deg, rgba(226,244,251,.16), rgba(226,244,251,.05)); box-shadow: 0 1px 0 rgba(255,255,255,.35) inset; transition: left .45s cubic-bezier(.34,1.42,.5,1), width .45s cubic-bezier(.34,1.42,.5,1), opacity .25s ease; }
 </style>

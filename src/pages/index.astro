@@ -37,5 +37,7 @@ const social = new URL("media/hero-both.png", Astro.site ?? "https://basaltty.gi
   </head>
   <body>
     <Fragment set:html={body} />
+    <!-- The behaviour the design carried in its canvas runtime. -->
+    <script is:inline src="landing.js" defer></script>
   </body>
 </html>
