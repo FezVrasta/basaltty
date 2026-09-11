@@ -1,0 +1,17 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Young+Serif&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; background: #04060A; }
+  body { margin: 0; background: #04060A; color: #E2F4FB; font-family: Syne, ui-sans-serif, -apple-system, "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased; text-wrap: pretty; }
+  ::selection { background: #5FDDF2; color: #04060A; }
+  a { color: #5FDDF2; text-decoration: none; }
+  a:hover { color: #E2F4FB; }
+  :focus-visible { outline: 2px solid #5FDDF2; outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3 { font-family: 'Young Serif', Georgia, serif; font-weight: 400; }
+  @keyframes bsBlink { 0%,55% { opacity: 1 } 56%,100% { opacity: 0 } }
+  @keyframes bsDrift1 { 0%,100% { transform: translate3d(0,0,0) scale(1) } 50% { transform: translate3d(6vw,4vh,0) scale(1.15) } }
+  @keyframes bsDrift2 { 0%,100% { transform: translate3d(0,0,0) scale(1.1) } 50% { transform: translate3d(-7vw,-5vh,0) scale(1) } }
+  @keyframes bsDrift3 { 0%,100% { transform: translate3d(0,0,0) scale(1) } 50% { transform: translate3d(4vw,-6vh,0) scale(1.2) } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>

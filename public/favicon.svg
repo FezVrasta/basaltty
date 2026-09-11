@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- The app's own icon: the hexagon, and the prompt inside it. -->
+  <defs>
+    <linearGradient id="ground" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#141C24"/>
+      <stop offset="1" stop-color="#04060A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" rx="230" fill="url(#ground)"/>
+<!-- Solid so the glass has a body to refract through, but dark: the glass
+       supplies the rim light and specular, the fill supplies the tone.
+       Scaled about the centre, kept at 1.05 to leave margin inside the tile.
+       1.14 was the hard ceiling — the hexagon is taller than it is wide, so its
+       top and bottom vertices reach the mask well before its sides do — but
+       sitting right on that limit left it looking wedged into the tile. -->
+  <g transform="translate(512,512) scale(1.05) translate(-512,-512)">
+    <path d="M 537.9 197 L 771.1 332 A 52 52 0 0 1 797 377 L 797 647 A 52 52 0 0 1 771.1 692 L 537.9 827 A 52 52 0 0 1 486.1 827 L 252.9 692 A 52 52 0 0 1 227 647 L 227 377 A 52 52 0 0 1 252.9 332 L 486.1 197 A 52 52 0 0 1 537.9 197 Z"
+          fill="#18242F"/>
+  </g>
+<!-- One closed, filled outline rather than stroked segments.
+       Two reasons. The importer fills these paths even with fill="none", so an
+       open stroked path closed itself and drew a line down the chevron's open
+       side. And two overlapping capsules each picked up their own glass bevel,
+       which showed as a crease through the vertex. A single contour gets a
+       single bevel.
+       Generated from the original polyline at half-width 22: the arcs are the
+       two end caps and the rounded outer vertex; the inner vertex is the plain
+       intersection of the offset edges. -->
+  <g transform="translate(512,512) scale(1.30) translate(-512,-512)">
+    <path d="M 388.66 457.77 L 444.44 512.00 L 388.66 566.23 A 22 22 0 0 0 419.34 597.77 L 491.34 527.77 A 22 22 0 0 0 491.34 496.23 L 419.34 426.23 A 22 22 0 0 0 388.66 457.77 Z" fill="#E2F4FB"/>
+    <rect x="516" y="560" width="104" height="26" rx="13" fill="#79D6E6"/>
+  </g>
+</svg>

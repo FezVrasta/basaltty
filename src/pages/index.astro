@@ -1,0 +1,41 @@
+---
+// The page is imported as raw HTML rather than pasted into this file.
+//
+// Astro reads `{` in markup as the start of an expression, and the design has
+// several thousand of them in its inline styles and scripts. Escaping 85KB of
+// markup by hand is a worse bargain than importing it: the design stays
+// byte-for-byte what was designed, and re-importing it later is a file copy
+// rather than a merge.
+import head from "../landing/head.html?raw";
+import body from "../landing/body.html?raw";
+
+const title = "Basaltty, keep every terminal straight";
+const description =
+  "A macOS terminal that names its own tabs, using Apple's on-device model, " +
+  "and lets you teach it about anything you run with a shell script.";
+// Relative, so the same markup works at a domain root and under a repository
+// path. `Astro.url` already carries the base.
+const social = new URL("media/hero-both.png", Astro.site ?? "https://basaltty.github.io");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={social} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <Fragment set:html={head} />
+  </head>
+  <body>
+    <Fragment set:html={body} />
+  </body>
+</html>

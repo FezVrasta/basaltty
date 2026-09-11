@@ -1,0 +1,72 @@
+# Builds the landing page and publishes it to GitHub Pages.
+#
+# Where it lands depends on the repository's name, and the two cases need
+# different asset paths:
+#
+#   basaltty.github.io        → https://basaltty.github.io/          base "/"
+#   <owner>/basaltty          → https://<owner>.github.io/basaltty/  base "/basaltty"
+#
+# A project site built with base "/" comes up as unstyled HTML, so the base is
+# worked out here from the repository being built rather than pinned to one of
+# them.
+name: Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Work out where this is published
+        id: target
+        run: |
+          set -euo pipefail
+          name="${GITHUB_REPOSITORY#*/}"
+          owner="${GITHUB_REPOSITORY%%/*}"
+          if [[ "$name" == *.github.io ]]; then
+            echo "url=https://$name" >> "$GITHUB_OUTPUT"
+            echo "base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "url=https://${owner,,}.github.io/$name" >> "$GITHUB_OUTPUT"
+            echo "base=/$name" >> "$GITHUB_OUTPUT"
+          fi
+
+      - run: npm ci
+
+      - run: npm run build
+        env:
+          SITE_URL: ${{ steps.target.outputs.url }}
+          SITE_BASE: ${{ steps.target.outputs.base }}
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
