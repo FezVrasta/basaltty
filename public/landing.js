@@ -91,108 +91,6 @@
     });
   }
 
-  /* -- The basalt behind everything --------------------------------------
-   *
-   * The design referenced a rendered image that never came with the export.
-   * It is drawn here from the same seeded generator the design used, which
-   * also means it is sharp at any viewport rather than a fixed-size photo.
-   */
-  function rng(seed) {
-    let s = seed;
-    return () => { s = (s * 1664525 + 1013904223) % 4294967296; return s / 4294967296; };
-  }
-
-  function drawBasalt(c) {
-    const dpr = Math.min(devicePixelRatio || 1, 1.5);
-    const w = c.clientWidth, h = c.clientHeight;
-    if (!w || !h) return;
-    c.width = w * dpr; c.height = h * dpr;
-    const g = c.getContext('2d');
-    g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const rnd = rng(20260911);
-    g.fillStyle = '#05080C'; g.fillRect(0, 0, w, h);
-
-    const R = Math.max(58, Math.min(w, h) / 9);      // hex circumradius
-    const dx = Math.sqrt(3) * R, dy = 1.5 * R;
-    const cols = Math.ceil(w / dx) + 2, rows = Math.ceil(h / dy) + 2;
-    const cells = [];
-    for (let r = -1; r < rows; r++) {
-      for (let q = -1; q < cols; q++) {
-        const cx = q * dx + (r % 2 ? dx / 2 : 0) + (rnd() - 0.5) * R * 0.22;
-        const cy = r * dy + (rnd() - 0.5) * R * 0.22;
-        const pts = [];
-        for (let i = 0; i < 6; i++) {
-          const a = Math.PI / 180 * (60 * i - 30);
-          const rr = R * (0.9 + rnd() * 0.16);
-          pts.push([cx + rr * Math.cos(a), cy + rr * Math.sin(a)]);
-        }
-        cells.push({ cx, cy, pts, tone: rnd(), lift: rnd() });
-      }
-    }
-
-    const poly = (pts, scale, cx, cy) => {
-      g.beginPath();
-      pts.forEach((p, i) => {
-        const x = cx + (p[0] - cx) * scale, y = cy + (p[1] - cy) * scale;
-        i ? g.lineTo(x, y) : g.moveTo(x, y);
-      });
-      g.closePath();
-    };
-
-    cells.forEach(({ cx, cy, pts, tone, lift }) => {
-      // side wall, lit from the upper left
-      const bev = g.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
-      const warm = 20 * lift;
-      bev.addColorStop(0, 'rgb(' + Math.round(116 + warm) + ',' + Math.round(120 + warm) + ',' + Math.round(118 + warm * 0.6) + ')');
-      bev.addColorStop(0.5, 'rgb(52,58,64)');
-      bev.addColorStop(1, 'rgb(16,21,27)');
-      g.fillStyle = bev;
-      poly(pts, 1, cx, cy); g.fill();
-
-      // top face
-      const shade = 34 + tone * 58;
-      const face = g.createLinearGradient(cx - R * 0.7, cy - R * 0.7, cx + R * 0.7, cy + R * 0.7);
-      face.addColorStop(0, 'rgb(' + Math.round(shade * 1.25) + ',' + Math.round(shade * 1.3) + ',' + Math.round(shade * 1.35) + ')');
-      face.addColorStop(1, 'rgb(' + Math.round(shade * 0.7) + ',' + Math.round(shade * 0.76) + ',' + Math.round(shade * 0.84) + ')');
-      g.fillStyle = face;
-      const inset = 0.82 - lift * 0.08;
-      const ox = cx + (cx - w / 2) * 0.012, oy = cy + (cy - h / 2) * 0.012;
-      poly(pts, inset, ox, oy); g.fill();
-
-      // grain
-      g.save();
-      poly(pts, inset, ox, oy); g.clip();
-      for (let i = 0; i < 26; i++) {
-        const px = cx + (rnd() - 0.5) * R * 1.6, py = cy + (rnd() - 0.5) * R * 1.6;
-        g.fillStyle = rnd() > 0.5 ? 'rgba(226,244,251,.05)' : 'rgba(4,6,10,.22)';
-        g.beginPath(); g.arc(px, py, rnd() * 2.4, 0, 6.283); g.fill();
-      }
-      g.restore();
-
-      // crack outline
-      g.strokeStyle = 'rgba(4,6,10,.6)'; g.lineWidth = 1;
-      poly(pts, 1, cx, cy); g.stroke();
-    });
-
-    const vg = g.createRadialGradient(w * 0.5, h * 0.3, Math.min(w, h) * 0.2, w * 0.5, h * 0.5, Math.max(w, h) * 0.8);
-    vg.addColorStop(0, 'rgba(4,6,10,.15)');
-    vg.addColorStop(1, 'rgba(4,6,10,.75)');
-    g.fillStyle = vg; g.fillRect(0, 0, w, h);
-  }
-
-  function wireBasalt() {
-    const band = document.querySelector('[data-basalt]');
-    if (!band) return;
-    const c = document.createElement('canvas');
-    c.setAttribute('aria-hidden', 'true');
-    c.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block';
-    band.appendChild(c);
-    const draw = () => drawBasalt(c);
-    draw();
-    let t;
-    addEventListener('resize', () => { clearTimeout(t); t = setTimeout(draw, 150); });
-  }
-
   /* -- Parallax on the band, and the fade that rides with it -------------- */
   function wireParallax() {
     const bands = $('[data-band]');
@@ -313,7 +211,6 @@
   }
 
   function start() {
-    wireBasalt();
     wireParallax();
     wireVideos();
     wireNav();
