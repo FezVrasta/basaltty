@@ -210,7 +210,29 @@
     setInterval(() => { i = (i + 1) % credits.length; el.textContent = credits[i]; }, 2400);
   }
 
+  /* -- Which version the download button is handing out -------------------
+   *
+   * The link itself is `releases/latest/download/Basaltty.zip`, which GitHub
+   * resolves — so the button is right without anyone editing the page. The
+   * number beside it comes from the same appcast the app's own updater reads,
+   * rather than from a second source that could disagree with it.
+   */
+  async function wireVersion() {
+    const label = document.querySelector('[data-version]');
+    if (!label) return;
+    try {
+      const response = await fetch('appcast.xml', { cache: 'no-cache' });
+      if (!response.ok) return;
+      const feed = new DOMParser().parseFromString(await response.text(), 'application/xml');
+      const version = feed.querySelector('item title')?.textContent?.trim();
+      if (version) label.textContent = 'Version ' + version + '.';
+    } catch {
+      // No version beside the button is fine; a wrong one is not.
+    }
+  }
+
   function start() {
+    wireVersion();
     wireParallax();
     wireVideos();
     wireNav();
