@@ -212,7 +212,7 @@
 
   /* -- Which version the download button is handing out -------------------
    *
-   * The link itself is `releases/latest/download/Basaltty.zip`, which GitHub
+   * The link itself is `releases/latest/download/Basaltty.dmg`, which GitHub
    * resolves — so the button is right without anyone editing the page. The
    * number beside it comes from the same appcast the app's own updater reads,
    * rather than from a second source that could disagree with it.
