@@ -1,0 +1,89 @@
+---
+// The shortest honest privacy policy: the app collects nothing, and the page
+// says what the parts that do touch the network actually do.
+const title = "Basaltty — Privacy";
+const updated = "13 September 2026";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content="Basaltty collects nothing." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 12vh 6vw 14vh;
+        background: #04060a;
+        color: #e2f4fb;
+        font-family: Syne, ui-sans-serif, -apple-system, sans-serif;
+        line-height: 1.65;
+      }
+      main { max-width: 42rem; margin: 0 auto; }
+      h1 { font-family: "Young Serif", Georgia, serif; font-weight: 400; font-size: 2.4rem; margin: 0 0 0.4em; }
+      h2 { font-family: "Young Serif", Georgia, serif; font-weight: 400; font-size: 1.3rem; margin: 2.2em 0 0.4em; }
+      p, li { color: rgba(226, 244, 251, 0.78); }
+      a { color: #5fddf2; }
+      .updated { color: rgba(226, 244, 251, 0.45); font-size: 0.9rem; }
+      .back { display: inline-block; margin-top: 3rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Privacy</h1>
+      <p class="updated">Last updated {updated}</p>
+
+      <p>
+        Basaltty collects nothing. There is no account, no analytics, no
+        tracking, and no server of ours for anything to be sent to.
+      </p>
+
+      <h2>Your terminals</h2>
+      <p>
+        What your terminals show travels directly between your own devices, over
+        a connection encrypted end to end. It does not pass through us, and
+        there is nowhere for us to keep it.
+      </p>
+
+      <h2>How the devices find each other</h2>
+      <p>
+        Through your own private iCloud database, which only you can read — not
+        us, and not Apple. It holds the name of each device and a few connection
+        messages, and the messages are deleted a second later, as soon as the
+        connection is made.
+      </p>
+
+      <h2>Naming your tabs</h2>
+      <p>
+        The names and groups are worked out by a model running on your Mac.
+        Nothing about your tabs leaves the machine they are on.
+      </p>
+
+      <h2>Buying Basaltty Pro</h2>
+      <p>
+        Purchases are handled by Apple. We never see your payment details, and
+        Apple does not give them to us. Whether a subscription is active is
+        stored in your own private iCloud database so that your Mac can check
+        it.
+      </p>
+
+      <h2>Children</h2>
+      <p>Basaltty is not directed at children and collects nothing from anybody.</p>
+
+      <h2>Asking about this</h2>
+      <p>
+        Open an issue at
+        <a href="https://github.com/FezVrasta/basaltty/issues">github.com/FezVrasta/basaltty</a>.
+      </p>
+
+      <a class="back" href=".">Back to Basaltty</a>
+    </main>
+  </body>
+</html>

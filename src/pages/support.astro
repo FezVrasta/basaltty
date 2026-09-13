@@ -1,0 +1,72 @@
+---
+// What the App Store listing points at. Enough to solve the two things that go
+// wrong, and a place to report the third.
+const title = "Basaltty — Support";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content="Getting Basaltty working, and where to report a problem." />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600&family=Young+Serif&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 12vh 6vw 14vh;
+        background: #04060a;
+        color: #e2f4fb;
+        font-family: Syne, ui-sans-serif, -apple-system, sans-serif;
+        line-height: 1.65;
+      }
+      main { max-width: 42rem; margin: 0 auto; }
+      h1 { font-family: "Young Serif", Georgia, serif; font-weight: 400; font-size: 2.4rem; margin: 0 0 0.4em; }
+      h2 { font-family: "Young Serif", Georgia, serif; font-weight: 400; font-size: 1.3rem; margin: 2.2em 0 0.4em; }
+      p, li { color: rgba(226, 244, 251, 0.78); }
+      a { color: #5fddf2; }
+      .back { display: inline-block; margin-top: 3rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Support</h1>
+
+      <h2>What you need</h2>
+      <p>
+        Basaltty on your Mac, free from <a href=".">this site</a>, and Basaltty
+        on your iPhone or iPad. Both devices signed into the same iCloud
+        account, with iCloud Drive on.
+      </p>
+
+      <h2>The phone cannot find the Mac</h2>
+      <p>
+        Check that the Mac app is running, that both devices are on the same
+        iCloud account, and that both are online — they do not have to be on the
+        same network, but they do both have to reach iCloud.
+      </p>
+
+      <h2>The phone opens one Mac and not another</h2>
+      <p>
+        Without Basaltty Pro, your phone opens the Mac you chose in the Mac
+        app's settings, under iPhone &amp; iPad. Pro opens all of them, and is
+        bought in the app on iPhone or iPad.
+      </p>
+
+      <h2>Something else</h2>
+      <p>
+        Open an issue at
+        <a href="https://github.com/FezVrasta/basaltty/issues">github.com/FezVrasta/basaltty</a>,
+        with what you were doing and what happened. Replies are best effort, by
+        one person.
+      </p>
+
+      <a class="back" href=".">Back to Basaltty</a>
+    </main>
+  </body>
+</html>
