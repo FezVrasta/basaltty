@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import hashedMedia from "./src/hashed-media.mjs";
 
 /**
  * Where the site is published.
@@ -15,4 +16,7 @@ export default defineConfig({
   site: process.env.SITE_URL ?? "https://basaltty.github.io",
   base: process.env.SITE_BASE ?? "/",
   build: { format: "file" },
+  // The screenshots and clips are copied through from `public/`, so nothing
+  // else gives them a name that changes when their contents do.
+  integrations: [hashedMedia()],
 });
