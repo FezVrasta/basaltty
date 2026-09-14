@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
  *
  * Astro hashes what it bundles, but `public/` is copied through untouched, and
  * that is where the screenshots and the clips live. Their names never change,
- * so a browser that has one has it for as long as its cache says — which is how
+ * so a browser that has one has it for as long as its cache says, which is how
  * a re-recorded video sat behind an old copy of itself with the same URL, on a
  * page that had already been told the file was fixed.
  *
