@@ -6,17 +6,17 @@
     <description>Updates for Basaltty.</description>
     <language>en</language>
     <item>
-      <title>0.5.5</title>
-      <link>https://github.com/FezVrasta/basaltty/releases/tag/v0.5.5</link>
-      <sparkle:version>13</sparkle:version>
-      <sparkle:shortVersionString>0.5.5</sparkle:shortVersionString>
+      <title>0.5.6</title>
+      <link>https://github.com/FezVrasta/basaltty/releases/tag/v0.5.6</link>
+      <sparkle:version>15</sparkle:version>
+      <sparkle:shortVersionString>0.5.6</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-      <pubDate>Wed, 23 Sep 2026 14:58:40 +0000</pubDate>
+      <pubDate>Thu, 24 Sep 2026 10:26:25 +0000</pubDate>
       <enclosure
-        url="https://github.com/FezVrasta/basaltty/releases/download/v0.5.5/Basaltty.dmg"
-        length="32077830"
+        url="https://github.com/FezVrasta/basaltty/releases/download/v0.5.6/Basaltty.dmg"
+        length="32319468"
         type="application/x-apple-diskimage"
-        sparkle:edSignature="huwN/vO2wm2TqBhNkBxPqDLSkUNYwsu4ZbgPvjZytXI0Y7IdUAbH2mCVmELpR9dgx7Ss3mQdOC5ZaRdomnMWDQ==" />
+        sparkle:edSignature="eyT3EgbAScnxSiHIbEn6Fi00wRpltmOnqjnNhkjV/d4k9dOHMKrl5fkgK8Iw4pbpfRIV747XB4jYNvn2Fsk+Aw==" />
     </item>
   </channel>
 </rss>
